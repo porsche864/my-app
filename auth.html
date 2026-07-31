@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - RootKit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo-name">
+            <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                <img src="img/logo.png" alt="Logo">
+                <span>RootKit</span>
+            </a>
+        </div>
+    </header>
+    
+    <main class="form-main">
+        <div class="form-container">
+            <div class="auth-toggle-tabs">
+                <button id="loginTabBtn" class="toggle-btn active" onclick="switchTab('login')">Log In</button>
+                <button id="signupTabBtn" class="toggle-btn" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+            
+            <div id="loginFormContainer" class="auth-form-section">
+                <h2>Welcome Back</h2>
+                <p class="form-subtitle">Log in to access your digital tools and manuals.</p>
+                <form action="#" method="POST">
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required placeholder="Enter your email">
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="form-submit-btn">LOG IN</button>
+                </form>
+                
+                <div style="display: flex; align-items: center; margin: 20px 0; color: var(--short-note-color);">
+                    <div style="flex: 1; height: 1px; background-color: var(--input-border, #ccc);"></div>
+                    <span style="padding: 0 10px; font-size: 0.85rem;">OR</span>
+                    <div style="flex: 1; height: 1px; background-color: var(--input-border, #ccc);"></div>
+                </div>
+
+                <button id="googleLoginBtn" type="button" class="form-submit-btn" style="background-color: #ffffff; color: #000000; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="fa-brands fa-google" style="color: #4285F4;"></i> Continue with Google
+                </button>
+            </div>
+
+            <div id="signupFormContainer" class="auth-form-section" style="display: none;">
+                <h2>Create Account</h2>
+                <p class="form-subtitle">Start executing with instant step-by-step manuals.</p>
+                <form action="#" method="POST">
+                    <div class="input-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Enter your full name">
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email">
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password">
+                    </div>
+                    <button type="submit" class="form-submit-btn">SIGN UP</button>
+                </form>
+
+                <div style="display: flex; align-items: center; margin: 20px 0; color: var(--short-note-color);">
+                    <div style="flex: 1; height: 1px; background-color: var(--input-border, #ccc);"></div>
+                    <span style="padding: 0 10px; font-size: 0.85rem;">OR</span>
+                    <div style="flex: 1; height: 1px; background-color: var(--input-border, #ccc);"></div>
+                </div>
+
+                <button id="googleSignupBtn" type="button" class="form-submit-btn" style="background-color: #ffffff; color: #000000; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="fa-brands fa-google" style="color: #4285F4;"></i> Continue with Google
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function switchTab(tab) {
+            const loginBtn = document.getElementById('loginTabBtn');
+            const signupBtn = document.getElementById('signupTabBtn');
+            const loginForm = document.getElementById('loginFormContainer');
+            const signupForm = document.getElementById('signupFormContainer');
+
+            if (tab === 'login') {
+                loginBtn.classList.add('active');
+                signupBtn.classList.remove('active');
+                loginForm.style.display = 'block';
+                signupForm.style.display = 'none';
+            } else {
+                signupBtn.classList.add('active');
+                loginBtn.classList.remove('active');
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            }
+        }
+    </script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
