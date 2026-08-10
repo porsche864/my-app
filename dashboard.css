@@ -1,29 +1,26 @@
-/* --- Base Body Settings for Mobile & Desktop --- */
 .dashboard-body {
-    background-color: #d3eafc; /* Fallback for browsers failing gradients */
-    background: -webkit-linear-gradient(135deg, #d3eafc 0%, #a2d2f7 100%);
     background: linear-gradient(135deg, #d3eafc 0%, #a2d2f7 100%);
-    background-attachment: fixed;
-    background-size: cover;
     min-height: 100vh;
-    min-height: 100dvh; /* Handles dynamic mobile browser navigation bars */
     padding: 25px;
     font-family: 'Poppins', sans-serif;
     color: #2b2d42;
-    -webkit-text-size-adjust: 100%; /* Prevents automatic text scaling bugs on Android */
+    
+    /* Prevent Android Chrome from scaling text size automatically */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
-/* --- Core Dashboard Layout --- */
 .dashboard-layout {
     display: flex;
     background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
     overflow: hidden;
+    width: 1350px;
     max-width: 1350px;
     margin: 0 auto;
     min-height: 850px;
-    width: 100%;
 }
 
 .dash-sidebar {
@@ -35,7 +32,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 0;
-    flex-shrink: 0;
 }
 
 .brand-avatar {
@@ -86,14 +82,12 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    min-width: 0; /* Prevents flex children from overflowing on mobile */
 }
 
 .dash-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 15px;
 }
 
 .dash-header h2 {
@@ -111,7 +105,6 @@
     gap: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
     width: 250px;
-    max-width: 100%;
 }
 
 .search-box input {
@@ -552,65 +545,4 @@
 
 .modal-btn-confirm:hover {
     background-color: #d65a3c;
-}
-
-/* --- Android / Mobile Media Queries --- */
-@media (max-width: 900px) {
-    .dashboard-body {
-        padding: 10px;
-    }
-
-    .dashboard-layout {
-        flex-direction: column;
-        min-height: auto;
-        border-radius: 12px;
-    }
-
-    .dash-sidebar {
-        width: 100%;
-        height: auto;
-        flex-direction: row;
-        border-right: none;
-        border-bottom: 1px solid #f0f2f5;
-        padding: 10px 15px;
-    }
-
-    .sidebar-nav {
-        flex-direction: row;
-        margin-top: 0;
-        gap: 10px;
-    }
-
-    .dash-workspace {
-        padding: 15px;
-    }
-
-    .dash-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .search-box {
-        width: 100%;
-    }
-
-    .dash-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .metrics-row {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .metrics-row {
-        grid-template-columns: 1fr;
-    }
-
-    .campaign-table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
 }
