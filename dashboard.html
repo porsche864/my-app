@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Fixed viewport to force mobile to render fixed desktop canvas -->
-    <meta name="viewport" content="width=1350, initial-scale=0.3, user-scalable=yes">
+    <!-- Viewport locked to desktop width -->
+    <meta name="viewport" content="width=1280, initial-scale=0.3, minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes">
     <link rel="icon" type="image/jpeg" href="img/icon.jpg">
     <title>Dashboard - RootKit</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="dashboard.css?v=3.0">
+    <link rel="stylesheet" href="dashboard.css?v=4.0">
 </head>
 <body class="dashboard-body">
     <div class="dashboard-layout">
@@ -40,7 +40,6 @@
                 <h2>User Dashboard</h2>
             </header>
 
-            <!-- REMOVED INLINE STYLES THAT LOCKED GRID TO 1 COLUMN AND 500px MAX-WIDTH -->
             <div class="dash-grid">
                 <!-- User Profile Card -->
                 <div class="dash-card user-profile-card">
@@ -53,7 +52,6 @@
                             <p id="detail-email">User Email</p>
                         </div>
                     </div>
-                    <!-- Click Edit to show settings card below -->
                     <button id="btn-edit-account" class="btn-edit-account" title="Edit Profile">
                         <i class="fa-solid fa-user-pen"></i> Edit
                     </button>
@@ -61,35 +59,35 @@
 
                 <!-- Account Settings Details (Hidden by default) -->
                 <div class="dash-card settings-card-hidden" id="account-settings-card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="card-header">
                         <h3>Edit Account Details</h3>
-                        <button id="btn-close-settings" style="background: none; border: none; font-size: 1.1rem; color: #a0aec0; cursor: pointer;">
+                        <button id="btn-close-settings" class="btn-close-icon">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>
 
                     <!-- Edit Full Name Form -->
-                    <form id="edit-profile-form" style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px; margin-bottom: 25px;">
-                        <label style="font-size: 0.85rem; color: #4a5568; font-weight: 600;">Full Name</label>
-                        <div class="search-box" style="width: 100%; border: 1px solid #e2e8f0;">
+                    <form id="edit-profile-form" class="form-container">
+                        <label class="form-label">Full Name</label>
+                        <div class="search-box field-full-width">
                             <i class="fa-solid fa-user"></i>
                             <input type="text" id="edit-fullname" placeholder="Enter full name" required>
                         </div>
-                        <button type="submit" class="modal-btn modal-btn-confirm" style="background-color: #00a8b5; align-self: flex-start;">
+                        <button type="submit" class="modal-btn modal-btn-confirm btn-teal">
                             <i class="fa-solid fa-pen"></i> Save Name
                         </button>
                     </form>
 
-                    <hr style="border: none; border-top: 1px solid #edf2f7; margin-bottom: 25px;">
+                    <hr class="form-divider">
 
                     <!-- Update Password Form -->
-                    <form id="update-pass-form" style="display: flex; flex-direction: column; gap: 12px;">
-                        <label style="font-size: 0.85rem; color: #4a5568; font-weight: 600;">New Password</label>
-                        <div class="search-box" style="width: 100%; border: 1px solid #e2e8f0;">
+                    <form id="update-pass-form" class="form-container">
+                        <label class="form-label">New Password</label>
+                        <div class="search-box field-full-width">
                             <i class="fa-solid fa-lock"></i>
                             <input type="password" id="new-password" placeholder="Min. 6 characters" required minlength="6">
                         </div>
-                        <button type="submit" class="modal-btn modal-btn-confirm" style="background-color: #ff9f1c; align-self: flex-start;">
+                        <button type="submit" class="modal-btn modal-btn-confirm btn-orange">
                             <i class="fa-solid fa-key"></i> Update Password
                         </button>
                     </form>
