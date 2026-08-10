@@ -1,27 +1,75 @@
+/* ==========================================================================
+   1. Imports, Design Tokens & Global Reset
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
+:root {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1e1e1e;
+    --header-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --heading-color: #ffffff;
+    --short-note-color: #b0b0b0;
+    --card-bg: #1e1e1e;
+    --card-border: #2a2a2a;
+    --input-bg: #2a2a2a;
+    --input-border: #333333;
+    --input-focus: #4dabf7;
+    --btn-bg: #4dabf7;
+    --btn-hover: #3b82f6;
+    --accent-teal: #00a8b5;
+    --accent-orange: #ff9f1c;
+    --accent-red: #e76f51;
+    --accent-green: #2ec4b6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   2. Dashboard Layout & Workspace
+   ========================================================================== */
 .dashboard-body {
-    
+    background-color: var(--bg-color);
     min-height: 100vh;
     padding: 25px;
     font-family: 'Poppins', sans-serif;
-    color: #2b2d42;
+    color: var(--text-color);
 }
 
 .dashboard-layout {
     display: flex;
-    background: #ffffff;
+    background: var(--header-bg);
+    border: 1px solid var(--card-border);
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     max-width: 1350px;
     margin: 0 auto;
     min-height: 850px;
 }
 
+/* ==========================================================================
+   3. Sidebar & Navigation
+   ========================================================================== */
 .dash-sidebar {
     width: 75px;
-    background: #ffffff;
-    border-right: 1px solid #f0f2f5;
+    background: var(--card-bg);
+    border-right: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,7 +80,7 @@
 .brand-avatar {
     width: 38px;
     height: 38px;
-    background-color: #00a8b5;
+    background-color: var(--accent-teal);
     color: #ffffff;
     border-radius: 50%;
     display: flex;
@@ -54,7 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #a0aec0;
+    color: var(--short-note-color);
     text-decoration: none;
     border-radius: 10px;
     font-size: 1.1rem;
@@ -66,13 +114,16 @@
 
 .nav-icon:hover, 
 .nav-icon.active {
-    color: #00a8b5;
-    background: #e6f7f8;
+    color: var(--btn-bg);
+    background: rgba(77, 171, 247, 0.15);
 }
 
+/* ==========================================================================
+   4. Header & Search
+   ========================================================================== */
 .dash-workspace {
     flex: 1;
-    background: #f8fafc;
+    background: var(--bg-color);
     padding: 25px 30px;
     display: flex;
     flex-direction: column;
@@ -87,18 +138,19 @@
 
 .dash-header h2 {
     font-size: 1.5rem;
-    color: #1a202c;
+    color: var(--heading-color);
     font-weight: 700;
 }
 
 .search-box {
-    background: #ffffff;
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
     border-radius: 10px;
     padding: 8px 15px;
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     width: 250px;
 }
 
@@ -107,15 +159,18 @@
     outline: none;
     background: transparent;
     font-size: 0.85rem;
-    color: #2d3748;
+    color: var(--heading-color);
     width: 100%;
 }
 
 .search-box i {
-    color: #a0aec0;
+    color: var(--short-note-color);
     font-size: 0.9rem;
 }
 
+/* ==========================================================================
+   5. Dashboard Grid & Cards
+   ========================================================================== */
 .dash-grid {
     display: grid;
     grid-template-columns: 2.2fr 1fr;
@@ -130,10 +185,11 @@
 }
 
 .dash-card {
-    background: #ffffff;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .card-header {
@@ -146,12 +202,12 @@
 .card-header h3 {
     font-size: 1rem;
     font-weight: 600;
-    color: #2d3748;
+    color: var(--heading-color);
 }
 
 .view-more {
     font-size: 0.8rem;
-    color: #ff9f1c;
+    color: var(--accent-orange);
     text-decoration: none;
 }
 
@@ -163,7 +219,7 @@
 
 .metric-label {
     font-size: 0.75rem;
-    color: #a0aec0;
+    color: var(--short-note-color);
     display: block;
     margin-bottom: 5px;
 }
@@ -171,7 +227,7 @@
 .metric-value {
     font-size: 1.1rem;
     font-weight: 700;
-    color: #1a202c;
+    color: var(--heading-color);
     display: flex;
     align-items: center;
     gap: 5px;
@@ -186,13 +242,13 @@
 }
 
 .tag.green {
-    background: #e6f9f0;
-    color: #2ec4b6;
+    background: rgba(46, 196, 182, 0.2);
+    color: var(--accent-green);
 }
 
 .tag.red {
-    background: #ffe5e5;
-    color: #e76f51;
+    background: rgba(231, 111, 81, 0.2);
+    color: var(--accent-red);
 }
 
 .mt-5 {
@@ -200,6 +256,9 @@
     display: inline-block;
 }
 
+/* ==========================================================================
+   6. Charts & Tables
+   ========================================================================== */
 .chart-container {
     position: relative;
     margin-top: 10px;
@@ -214,13 +273,13 @@
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
-    color: #a0aec0;
+    color: var(--short-note-color);
     margin-top: 10px;
 }
 
 .active-month {
-    background: #e6f7f8;
-    color: #00a8b5;
+    background: rgba(0, 168, 181, 0.2);
+    color: var(--accent-teal);
     padding: 2px 8px;
     border-radius: 6px;
     font-weight: 600;
@@ -233,12 +292,12 @@
 }
 
 .pill {
-    color: #a0aec0;
+    color: var(--short-note-color);
     cursor: pointer;
 }
 
 .pill.active {
-    color: #2d3748;
+    color: var(--heading-color);
     font-weight: 600;
 }
 
@@ -250,7 +309,8 @@
 
 .campaign-table td {
     padding: 12px 8px;
-    color: #4a5568;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--card-border);
 }
 
 .user-cell {
@@ -271,8 +331,8 @@
     font-size: 0.8rem;
 }
 
-.user-avatar.teal { background-color: #00a8b5; }
-.user-avatar.orange { background-color: #ff9f1c; }
+.user-avatar.teal { background-color: var(--accent-teal); }
+.user-avatar.orange { background-color: var(--accent-orange); }
 
 .mini-sparkline {
     display: flex;
@@ -285,6 +345,9 @@
     height: 20px;
 }
 
+/* ==========================================================================
+   7. Profiles, Badges & Interactive Elements
+   ========================================================================== */
 .user-profile-card {
     display: flex;
     align-items: center;
@@ -301,8 +364,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #e6f7f8;
-    color: #00a8b5;
+    background-color: rgba(0, 168, 181, 0.2);
+    color: var(--accent-teal);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -311,26 +374,26 @@
 
 .profile-info h4 {
     font-size: 0.9rem;
-    color: #2d3748;
+    color: var(--heading-color);
 }
 
 .profile-info p {
     font-size: 0.75rem;
-    color: #a0aec0;
+    color: var(--short-note-color);
 }
 
 .icon-btn-round {
     width: 35px;
     height: 35px;
     border-radius: 50%;
-    border: 1px solid #edf2f7;
-    background: #ffffff;
-    color: #00a8b5;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    color: var(--btn-bg);
     cursor: pointer;
 }
 
 .dots {
-    color: #a0aec0;
+    color: var(--short-note-color);
     cursor: pointer;
 }
 
@@ -344,7 +407,7 @@
 
 .bar {
     width: 8px;
-    background: #00a8b5;
+    background: var(--accent-teal);
     border-radius: 4px;
 }
 
@@ -364,16 +427,16 @@
     border: 6px solid transparent;
 }
 
-.donut-ring.outer { width: 110px; height: 110px; border-color: #e76f51; border-top-color: transparent; }
-.donut-ring.middle { width: 85px; height: 85px; border-color: #ff9f1c; border-left-color: transparent; }
-.donut-ring.inner { width: 60px; height: 60px; border-color: #00a8b5; border-bottom-color: transparent; }
+.donut-ring.outer { width: 110px; height: 110px; border-color: var(--accent-red); border-top-color: transparent; }
+.donut-ring.middle { width: 85px; height: 85px; border-color: var(--accent-orange); border-left-color: transparent; }
+.donut-ring.inner { width: 60px; height: 60px; border-color: var(--accent-teal); border-bottom-color: transparent; }
 
 .legend-row {
     display: flex;
     justify-content: center;
     gap: 10px;
     font-size: 0.7rem;
-    color: #718096;
+    color: var(--short-note-color);
     margin-top: 15px;
 }
 
@@ -384,17 +447,17 @@
     display: inline-block;
 }
 
-.dot.orange { background: #ff9f1c; }
-.dot.pink { background: #e76f51; }
-.dot.cyan { background: #00a8b5; }
+.dot.orange { background: var(--accent-orange); }
+.dot.pink { background: var(--accent-red); }
+.dot.cyan { background: var(--accent-teal); }
 
 .btn-edit-account {
     display: flex;
     align-items: center;
     gap: 6px;
-    background-color: #e6f7f8;
-    color: #00a8b5;
-    border: 1px solid rgba(0, 168, 181, 0.2);
+    background-color: rgba(77, 171, 247, 0.15);
+    color: var(--btn-bg);
+    border: 1px solid rgba(77, 171, 247, 0.3);
     border-radius: 8px;
     padding: 8px 14px;
     font-size: 0.82rem;
@@ -404,10 +467,10 @@
 }
 
 .btn-edit-account:hover {
-    background-color: #00a8b5;
+    background-color: var(--btn-bg);
     color: #ffffff;
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 168, 181, 0.2);
+    box-shadow: 0 4px 10px rgba(77, 171, 247, 0.3);
 }
 
 .btn-edit-account:active {
@@ -439,13 +502,16 @@
     }
 }
 
+/* ==========================================================================
+   8. Modals & Overlays
+   ========================================================================== */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
@@ -462,13 +528,14 @@
 }
 
 .logout-modal {
-    background: #ffffff;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
     border-radius: 16px;
     padding: 30px 25px;
     width: 90%;
     max-width: 380px;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     transform: translateY(20px) scale(0.95);
     transition: transform 0.25s ease;
 }
@@ -480,8 +547,8 @@
 .logout-modal-icon {
     width: 60px;
     height: 60px;
-    background-color: #ffe5e5;
-    color: #e76f51;
+    background-color: rgba(231, 111, 81, 0.2);
+    color: var(--accent-red);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -492,14 +559,14 @@
 
 .logout-modal h3 {
     font-size: 1.25rem;
-    color: #1a202c;
+    color: var(--heading-color);
     margin-bottom: 8px;
     font-weight: 700;
 }
 
 .logout-modal p {
     font-size: 0.88rem;
-    color: #718096;
+    color: var(--short-note-color);
     margin-bottom: 25px;
     line-height: 1.4;
 }
@@ -525,16 +592,17 @@
 }
 
 .modal-btn-cancel {
-    background-color: #edf2f7;
-    color: #4a5568;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--input-border);
 }
 
 .modal-btn-cancel:hover {
-    background-color: #e2e8f0;
+    background-color: var(--input-border);
 }
 
 .modal-btn-confirm {
-    background-color: #e76f51;
+    background-color: var(--accent-red);
     color: #ffffff;
 }
 
@@ -542,6 +610,9 @@
     background-color: #d65a3c;
 }
 
+/* ==========================================================================
+   9. Responsive Queries
+   ========================================================================== */
 @media (max-width: 900px) {
     .dash-grid {
         grid-template-columns: 1fr;
