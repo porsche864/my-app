@@ -3,108 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="img/icon.jpg">
     <title>Dashboard - RootKit</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
-<body>
-    <header>
-        <div class="logo-name">
-            <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
-                <img src="img/logo.png" alt="Logo">
-                <span>RootKit</span>
-            </a>
-        </div>
-        <div class="header-right">
-            <button id="btn-logout" class="start-link" style="cursor: pointer;">
-                <i class="fa-solid fa-sign-out-alt"></i> Log Out
-            </button>
-        </div>
-    </header>
-    
-    <main class="form-main">
-        <div class="form-container" style="max-width: 600px; text-align: center;">
-            <div style="margin-bottom: 25px;">
-                <div id="avatar" style="width: 80px; height: 80px; background-color: var(--btn-bg); color: #ffffff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; margin: 0 auto 15px auto;">U</div>
-                <h2 id="profile-username" style="font-size: 2rem; color: var(--heading-color);">Welcome</h2>
-                <p class="form-subtitle">You are successfully logged into your RootKit dashboard.</p>
+<body class="dashboard-body">
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="dash-sidebar">
+            <div class="sidebar-top">
+                <a href="index.html" class="sidebar-brand">
+                    <div class="brand-avatar" id="avatar">U</div>
+                </a>
+                <nav class="sidebar-nav">
+                    <a href="home.html" class="nav-icon" title="Go to Home"><i class="fa-solid fa-house"></i></a>
+                    <a href="dashboard.html" class="nav-icon active" title="Dashboard"><i class="fa-solid fa-border-all"></i></a>
+                    <a href="ctf-home.html" class="nav-icon" title="CTF Changer"><i class="fa-solid fa-flag"></i></a>
+                    <a href="terminal.html" class="nav-icon" title="Online Terminal"><i class="fa-solid fa-terminal"></i></a>
+                    <a href="shop.html" class="nav-icon" title="Shop"><i class="fa-solid fa-cart-shopping"></i></a>
+                    <a href="project.html" class="nav-icon" title="Projects"><i class="fa-solid fa-folder-open"></i></a>
+                </nav>
             </div>
-            
-            <div style="background-color: var(--input-bg); padding: 20px; border-radius: 10px; margin-bottom: 25px; text-align: left;">
-                <h3 style="color: var(--heading-color); margin-bottom: 10px; font-size: 1.1rem;">
-                    <i class="fa-solid fa-rocket" style="color: var(--btn-bg); margin-right: 8px;"></i> Quick Overview
-                </h3>
-                <p style="font-size: 0.9rem; color: var(--short-note-color); line-height: 1.5;">
-                    Access your digital tools, manage your step-by-step manuals, and explore secure execution paths from here.
-                </p>
+            <div class="sidebar-bottom">
+                <button id="btn-sidebar-settings" class="nav-icon" title="Settings"><i class="fa-solid fa-gear"></i></button>
+                <button id="btn-logout" class="nav-icon logout-btn" title="Log Out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
             </div>
+        </aside>
 
-            <a href="index.html" class="form-submit-btn" style="display: inline-block; text-decoration: none; text-align: center; line-height: normal;">
-                GO TO HOME
-            </a>
+        <!-- Main Dashboard Workspace -->
+        <div class="dash-workspace">
+            <header class="dash-header">
+                <h2>User Dashboard</h2>
+            </header>
+
+            <div class="dash-grid" style="grid-template-columns: 1fr; max-width: 500px;">
+                <!-- User Profile Card -->
+                <div class="dash-card user-profile-card">
+                    <div class="profile-info">
+                        <div class="profile-avatar-img">
+                            <i class="fa-solid fa-user-gear"></i>
+                        </div>
+                        <div>
+                            <h4 id="profile-username">User</h4>
+                            <p id="detail-email">User Email</p>
+                        </div>
+                    </div>
+                    <!-- Click Edit to show settings card below -->
+                    <button id="btn-edit-account" class="btn-edit-account" title="Edit Profile">
+                        <i class="fa-solid fa-user-pen"></i> Edit
+                    </button>
+                </div>
+
+                <!-- Account Settings Details (Hidden by default) -->
+                <div class="dash-card settings-card-hidden" id="account-settings-card">
+                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Edit Account Details</h3>
+                        <button id="btn-close-settings" style="background: none; border: none; font-size: 1.1rem; color: #a0aec0; cursor: pointer;">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <!-- Edit Full Name Form -->
+                    <form id="edit-profile-form" style="display: flex; flex-direction: column; gap: 12px; margin-top: 15px; margin-bottom: 25px;">
+                        <label style="font-size: 0.85rem; color: #4a5568; font-weight: 600;">Full Name</label>
+                        <div class="search-box" style="width: 100%; border: 1px solid #e2e8f0;">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="edit-fullname" placeholder="Enter full name" required>
+                        </div>
+                        <button type="submit" class="modal-btn modal-btn-confirm" style="background-color: #00a8b5; align-self: flex-start;">
+                            <i class="fa-solid fa-pen"></i> Save Name
+                        </button>
+                    </form>
+
+                    <hr style="border: none; border-top: 1px solid #edf2f7; margin-bottom: 25px;">
+
+                    <!-- Update Password Form -->
+                    <form id="update-pass-form" style="display: flex; flex-direction: column; gap: 12px;">
+                        <label style="font-size: 0.85rem; color: #4a5568; font-weight: 600;">New Password</label>
+                        <div class="search-box" style="width: 100%; border: 1px solid #e2e8f0;">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="new-password" placeholder="Min. 6 characters" required minlength="6">
+                        </div>
+                        <button type="submit" class="modal-btn modal-btn-confirm" style="background-color: #ff9f1c; align-self: flex-start;">
+                            <i class="fa-solid fa-key"></i> Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </main>
+    </div>
 
-    <!-- Firebase Auth Guard Script -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyD4uUnjwEcVNVn0Sd6KzuMxBiQW2QTzyks",
-            authDomain: "chat-b56a0.firebaseapp.com",
-            projectId: "chat-b56a0",
-            storageBucket: "chat-b56a0.firebasestorage.app",
-            messagingSenderId: "928517534314",
-            appId: "1:928517534314:web:adeb5fc7c8ae090dfad013",
-            measurementId: "G-MX1MJC4TCN"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        const profileUsername = document.getElementById("profile-username");
-        const avatar = document.getElementById("avatar");
-        const btnLogout = document.getElementById("btn-logout");
-
-        // Protect dashboard: Redirect to auth.html if user is not logged in
-        onAuthStateChanged(auth, async (user) => {
-            if (!user) {
-                window.location.href = "auth.html";
-            } else {
-                try {
-                    const usersRef = collection(db, "users");
-                    const q = query(usersRef, where("uid", "==", user.uid));
-                    const querySnapshot = await getDocs(q);
-                    
-                    if (!querySnapshot.empty) {
-                        const userData = querySnapshot.docs[0].data();
-                        const displayName = userData.fullName || userData.username || user.email;
-                        profileUsername.textContent = `Welcome, ${displayName}`;
-                        avatar.textContent = displayName.charAt(0).toUpperCase();
-                    } else {
-                        profileUsername.textContent = `Welcome, ${user.email}`;
-                        avatar.textContent = user.email.charAt(0).toUpperCase();
-                    }
-                } catch (err) {
-                    console.error("Error loading profile data:", err);
-                }
-            }
-        });
-
-        // Handle logout
-        btnLogout.addEventListener("click", async () => {
-            if (confirm("Are you sure you want to log out?")) {
-                try {
-                    await signOut(auth);
-                    window.location.href = "auth.html";
-                } catch (err) {
-                    console.error("Logout error:", err);
-                }
-            }
-        });
-    </script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
