@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="img/icon.jpg">
+    <title>RootKit - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo-name">
+            <a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+                <img src="img/logo.png" alt="Logo">
+                <span>RootKit</span>
+            </a>
+        </div>
+        <div class="header-right">
+            <!-- Top Right Profile Icon / Button -->
+            <a href="auth.html" id="profile-icon-btn" class="profile-nav-link" title="Account / Profile">
+                <div id="profile-avatar" class="profile-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <main class="home-container">
+        <div class="welcome-banner">
+            <h1>Welcome to RootKit</h1>
+            <p class="short-note">Select an interactive path to get started with step-by-step tools and manuals.</p>
+        </div>
+
+        <!-- 4 Option Grid -->
+        <div class="interactive-grid">
+            <!-- Option A: CTF Changer -->
+            <a href="ctf-home.html" class="option-card card-a">
+                <div class="card-badge">A</div>
+                <div class="card-icon"><i class="fa-solid fa-flag"></i></div>
+                <h3>CTF Changer</h3>
+                <p>Switch environments and manage active challenge configurations.</p>
+                <span class="card-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+
+            <!-- Option B: Online Terminal -->
+            <a href="terminal.html" class="option-card card-b">
+                <div class="card-badge">B</div>
+                <div class="card-icon"><i class="fa-solid fa-terminal"></i></div>
+                <h3>Online Terminal</h3>
+                <p>Access your web shell and execute interactive command tools.</p>
+                <span class="card-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+
+            <!-- Option C: Shop -->
+            <a href="shop.html" class="option-card card-c">
+                <div class="card-badge">C</div>
+                <div class="card-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                <h3>Shop</h3>
+                <p>Browse digital tools, premium manuals, and hardware kits.</p>
+                <span class="card-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+
+            <!-- Option D: Projects -->
+            <a href="project.html" class="option-card card-d">
+                <div class="card-badge">D</div>
+                <div class="card-icon"><i class="fa-solid fa-folder-open"></i></div>
+                <h3>Projects</h3>
+                <p>View community repositories, ongoing builds, and tool modules.</p>
+                <span class="card-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Firebase Auth & Dynamic State Script -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD4uUnjwEcVNVn0Sd6KzuMxBiQW2QTzyks",
+            authDomain: "chat-b56a0.firebaseapp.com",
+            projectId: "chat-b56a0",
+            storageBucket: "chat-b56a0.firebasestorage.app",
+            messagingSenderId: "928517534314",
+            appId: "1:928517534314:web:adeb5fc7c8ae090dfad013",
+            measurementId: "G-MX1MJC4TCN"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const profileIconBtn = document.getElementById("profile-icon-btn");
+        const profileAvatar = document.getElementById("profile-avatar");
+
+        // Dynamically update Profile Icon based on login status
+        onAuthStateChanged(auth, async (user) => {
+            if (user && profileIconBtn) {
+                profileIconBtn.href = "dashboard.html";
+                
+                try {
+                    const userDocRef = doc(db, "users", user.uid);
+                    const userDocSnap = await getDoc(userDocRef);
+                    let initial = "U";
+
+                    if (userDocSnap.exists()) {
+                        const name = userDocSnap.data().fullName || user.email;
+                        initial = name.charAt(0).toUpperCase();
+                    } else if (user.displayName || user.email) {
+                        const name = user.displayName || user.email;
+                        initial = name.charAt(0).toUpperCase();
+                    }
+
+                    profileAvatar.textContent = initial;
+                } catch (err) {
+                    console.error("Error fetching user data:", err);
+                    profileAvatar.textContent = user.email.charAt(0).toUpperCase();
+                }
+            } else if (profileIconBtn) {
+                profileIconBtn.href = "auth.html";
+                profileAvatar.innerHTML = '<i class="fa-solid fa-user"></i>';
+            }
+        });
+
+        if (window.location.pathname.endsWith('/index.html')) {
+            window.location.replace(window.location.pathname.replace(/\/index\.html$/, '/'));
+        }
+    </script>
+</body>
+</html>
