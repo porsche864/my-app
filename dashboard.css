@@ -549,3 +549,43 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* Update your .dashboard-body rule like this */
+.dashboard-body {
+    background-color: #d3eafc; /* Fallback for browsers that fail gradients */
+    background-image: linear-gradient(135deg, #d3eafc 0%, #a2d2f7 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
+    min-height: 100dvh; /* Force full screen height on mobile browsers */
+    padding: 15px; /* Reduced for smaller mobile screens */
+    font-family: 'Poppins', sans-serif;
+    color: #2b2d42;
+    -webkit-text-size-adjust: 100%; /* Prevents Android text scaling bugs */
+}
+
+@media (max-width: 768px) {
+    .dashboard-body {
+        padding: 10px;
+    }
+    
+    .dashboard-layout {
+        min-height: auto;
+        border-radius: 12px;
+        flex-direction: column;
+    }
+    
+    .dash-sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid #f0f2f5;
+        padding: 10px 15px;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        margin-top: 0;
+    }
+}
