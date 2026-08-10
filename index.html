@@ -15,7 +15,7 @@
             <span>RootKit</span>
         </div>
         <div class="header-right">
-            <a href="auth.html" class="start-link">START ></a>
+            <a href="auth.html" id="nav-auth-btn" class="start-link">START ></a>
         </div>
     </header>
     <main>
@@ -36,10 +36,7 @@
             </div>
         </div>
     </main>
-    <script>
-  if (window.location.pathname.endsWith('/index.html')) {
-    window.location.replace(window.location.pathname.replace(/\/index\.html$/, '/'));
-  }
-</script>
+
+    <script type="module" src="app.js"></script>
 </body>
 </html>
